@@ -39,45 +39,34 @@ src/
 ├── app/
 │    ├── App.tsx
 │    ├── main.tsx
-│    └── providers/
-│         ├── AppProviders.tsx        ← Redux, Router, PersistGate, Theme, Toasts
-│         └── ThemeProvider.tsx       ← Light/Dark Context Provider
+│    └── providers/                   ← Global context providers (Redux, Router, Theme)
 │
 ├── core/
-│    ├── api/
-│    │    ├── axiosInstance.ts        ← Axios client setup & 401 callback
-│    │    ├── apiEndpoints.ts         ← API target paths
-│    │    └── apiErrorHandler.ts      ← Global Axios error parser
-│    ├── router/
-│    │    ├── AppRouter.tsx           ← Routes definition & guards
-│    │    ├── ProtectedRoute.tsx      ← Require Authentication guard
-│    │    ├── PublicRoute.tsx         ← Anonymous forms guard
-│    │    └── routePaths.ts           ← Route paths constants
-│    ├── store/
-│    │    ├── store.ts                ← Redux store with persistor
-│    │    ├── rootReducer.ts          ← Combined Redux reducer
-│    │    └── hooks.ts                ← Typed selectors and dispatchers
-│    └── theme/
-│         └── colors.ts               ← Design token variables
+│    ├── api/                         ← Axios instances, endpoints, error handler
+│    ├── router/                      ← Routing engines, Protected/Public guards
+│    ├── store/                       ← Redux configureStore & hooks
+│    └── theme/                       ← Styling tokens (colors, fonts)
 │
 ├── features/
-│    ├── auth/                        ← Login, Signup, OTP, Forgot Password
-│    └── workItems/                   ← Dashboard, Task grids, Task Form Modals
+│    └── [featureName]/               ← Generic vertical-slice feature module structure
+│         ├── components/             ← Feature-specific UI components
+│         ├── hooks/                  ← Feature-specific custom hooks
+│         ├── pages/                  ← Feature-specific screen pages
+│         ├── services/               ← Feature-specific API clients
+│         ├── store/                  ← Redux state slice & async thunks
+│         ├── types/                  ← Types and TypeScript interfaces
+│         ├── validations/            ← Zod schemas
+│         └── index.ts                ← Public exports for the feature module
 │
 ├── shared/
 │    ├── components/
-│    │    ├── ui/                     ← Buttons, Inputs, Modals, Badges, Toasts
-│    │    └── layout/                 ← AppShell sidebar and navbar wrapper
-│    ├── hooks/                       ← useTheme, useToast, useDebounce
-│    └── validations/                 ← Shared Zod validations & refinement helpers
+│    │    ├── ui/                     ← Reusable UI atoms (Button, Input, Modal)
+│    │    └── layout/                 ← Shared layout modules (AppShell, Sidebar)
+│    ├── hooks/                       ← Reusable hooks (useTheme, useToast)
+│    └── validations/                 ← Shared Zod rules & refine helpers
 │
-├── types/
-│    └── api.types.ts                 ← ResponseModel schema
-│
-└── utils/
-     ├── cn.ts                        ← Tailwind class merge utility
-     ├── tokenStorage.ts              ← LocalStorage JWT token manager
-     └── formatters.ts                ← Extract initials, dates formatting
+├── types/                            ← Generic global TypeScript interfaces
+└── utils/                            ← Reusable utilities (cn, tokenStorage)
 ```
 
 ---
